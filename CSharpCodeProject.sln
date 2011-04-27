@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiment_03_Calculator", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiment_Extend_01_GEP", "Experiment_Extend_01_GEP\Experiment_Extend_01_GEP.csproj", "{D219BACF-9963-4DC7-8804-764C3AC57682}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiment_04_TreeViewAndMySQL", "Experiment_04_TreeViewAndMySQL\Experiment_04_TreeViewAndMySQL.csproj", "{59B81013-61DE-4A49-9D21-C3DF18AFF513}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{D219BACF-9963-4DC7-8804-764C3AC57682}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D219BACF-9963-4DC7-8804-764C3AC57682}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D219BACF-9963-4DC7-8804-764C3AC57682}.Release|x86.ActiveCfg = Release|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{59B81013-61DE-4A49-9D21-C3DF18AFF513}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,32 +12,20 @@ namespace Experiment_01_ConsoleApplication
         {
             string tmp;
             int m, n;
-            bool flagM = false, flagN = false;
             m = input("m", 0, 999);
             n = input("n", m, 1000);
-            long max = n * n;
-            int bit = 0; ;
-            while (max  > 0)
-            {
-                max /= 10;
-                bit++;
-            }
-            StringBuilder formatStr=new StringBuilder("{0:");
-            formatStr.Append(string.Format("D{0}", bit));
-            formatStr.Append("}  ");
-            /*Console.WriteLine(formatStr);*/
+            string str = Convert.ToString(n * n);
             for (int i = m; i <= n; i++)
             {
                 for (int j = m; j <= n; j++)
                 {
-                    Console.Write(formatStr.ToString(), i * j);
+                    Console.Write("{0:D" + str.Length + "} ", i * j);
                 }
                 Console.WriteLine();
             }
-
             Console.ReadKey();
         }
-       
+
         /// <summary>
         /// 输入一个left到right的整数并返回(不取边界值)
         /// </summary>
@@ -45,17 +33,18 @@ namespace Experiment_01_ConsoleApplication
         /// <param name="left">最小值</param>
         /// <param name="right">最大值</param>
         /// <returns>left到right的整数</returns>
-        static int input(string str,int left,int right){
-            int num=0;
+        static int input(string str, int left, int right)
+        {
+            int num = 0;
             while (true)
             {
-                Console.Write("请输入{0}值:",str);
+                Console.Write("请输入{0}值:", str);
                 string tmp = Console.ReadLine();
                 if (int.TryParse(tmp, out num) && safe(num, left, right))
                 {
                     return num;
                 }
-                Console.WriteLine("Error!!请输入"+left+"到"+right +"的整数!!");
+                Console.WriteLine("Error!!请输入" + left + "到" + right + "的整数!!");
             }
 
         }
@@ -67,7 +56,8 @@ namespace Experiment_01_ConsoleApplication
         /// <param name="num">要检查的整数</param>
         /// <param name="left">最小值</param>
         /// <param name="right">最大值</param>
-        static bool safe(int num,int left,int right){
+        static bool safe(int num, int left, int right)
+        {
             if (num <= left || num >= right) return false;
             return true;
         }

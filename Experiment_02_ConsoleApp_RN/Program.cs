@@ -17,13 +17,9 @@ namespace Experiment_02_ConsoleApp_RN
             timer1.Start();//开始计时
 
             HashSet<string> hs = new HashSet<string>();
-
             string strTableChar = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
             long tick = DateTime.Now.Ticks;
-            Random random = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32)); 
-
-
-
+            Random random = new Random((int)(tick & 0xffffffffL) | (int)(tick >> 32));
             StringBuilder sb = new StringBuilder();
             int len = Convert.ToInt32(args[0]);
             int count = Convert.ToInt32(args[1]);
@@ -38,9 +34,8 @@ namespace Experiment_02_ConsoleApp_RN
                 if (!hs.Add(sb.ToString()))
                 {
                     continue;
-                } 
+                }
                 mycount++;
-                
             }
 
             timer1.Stop();//停止计时 

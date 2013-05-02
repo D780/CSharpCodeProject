@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Experiment_04_TreeViewAndMySQL
 {
@@ -16,22 +17,33 @@ namespace Experiment_04_TreeViewAndMySQL
         public DataTable SelectAll()
         {
             MySqlHelper db = new MySqlHelper();
-            return db.ResultSet("SELECT * FROM `mysql`.`ttablediffcult` ORDER BY  `fid` ASC ");
+            return db.ResultSet("SELECT * FROM `ttablediffcult` ORDER BY  `fid` ASC ");
         }
 
         public DataTable Select(int fid)
         {
+            MySqlParameter[] param = { new MySqlParameter("@fid", MySqlDbType.Int32) };
+            param[0].Value = fid;
             MySqlHelper db = new MySqlHelper();
-            return db.ResultSet(string.Format("SELECT * FROM `mysql`.`ttablediffcult` WHERE `fid`={0} ORDER BY  `fid` ASC ", fid));
+            string sql = "SELECT * FROM `ttablediffcult` WHERE `fid`=@fid ORDER BY  `fid` ASC ";
+            return db.ResultSet(sql, param);
         }
 
-        public bool updateByID(int fid,string fName,string fRemark){
+        public bool updateByID(int fid, string fName, string fRemark)
+        {
+            MySqlParameter[] param ={                                 
+                                   new MySqlParameter("@fName",MySqlDbType.Text),
+                                   new MySqlParameter("@fRemark",MySqlDbType.Text),   
+                                   new MySqlParameter("@fid",MySqlDbType.Int32),                                 
+                                   };
+            param[0].Value = fName;
+            param[1].Value = fRemark;
+            param[2].Value = fid;
             MySqlHelper db = new MySqlHelper();
-
-            string sql = string.Format("UPDATE  `mysql`.`ttablediffcult` SET  `fName` =  '{1}',`fRemark` =  '{2}' WHERE  `ttablediffcult`.`fid` ={0}", fid, fName, fRemark);
+            string sql ="UPDATE  `ttablediffcult` SET  `fName` =  @fName,`fRemark` = @fRemark WHERE  `ttablediffcult`.`fid` =@fid";
             try
             {
-                if (db.ExecuteSQL(sql))
+                if (db.ExecuteSQL(sql,param))
                 {
                     return true;
                 }
@@ -48,11 +60,19 @@ namespace Experiment_04_TreeViewAndMySQL
 
         public bool Insert(int fid, string fName, string fRemark)
         {
+            MySqlParameter[] param ={      
+                                   new MySqlParameter("@fid",MySqlDbType.Int32),    
+                                   new MySqlParameter("@fName",MySqlDbType.Text),
+                                   new MySqlParameter("@fRemark",MySqlDbType.Text),                                                                   
+                                   };
+            param[0].Value = fid;
+            param[1].Value = fName;
+            param[2].Value = fRemark;            
             MySqlHelper db = new MySqlHelper();
-            string sql = string.Format("INSERT INTO `mysql`.`ttablediffcult`(`fid`,`fName`,`fRemark`) VALUES({0},'{1}','{2}')", fid, fName, fRemark);
+            string sql = "INSERT INTO `ttablediffcult`(`fid`,`fName`,`fRemark`) VALUES(@fid,@fName,@fRemark)";
             try
             {
-                if (db.ExecuteSQL(sql))
+                if (db.ExecuteSQL(sql,param))
                 {
                     return true;
                 }
@@ -69,11 +89,13 @@ namespace Experiment_04_TreeViewAndMySQL
 
         public bool Delete(int fid)
         {
+            MySqlParameter[] param = { new MySqlParameter("@fid", MySqlDbType.Int32) };
+            param[0].Value = fid;
             MySqlHelper db = new MySqlHelper();
-            string sql = string.Format("DELETE FROM `mysql`.`ttablediffcult` WHERE `ttablediffcult`.`fid`={0}", fid);
+            string sql = "DELETE FROM `ttablediffcult` WHERE `ttablediffcult`.`fid`=@fid";
             try
             {
-                if (db.ExecuteSQL(sql))
+                if (db.ExecuteSQL(sql,param))
                 {
                     return true;
                 }

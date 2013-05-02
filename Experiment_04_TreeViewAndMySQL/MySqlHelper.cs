@@ -74,6 +74,38 @@ namespace Experiment_04_TreeViewAndMySQL
         }
 
         /// <summary>
+        /// 执行SQL语句
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="param">参数列表</param>
+        /// <returns></returns>
+        public bool ExecuteSQL(string sql,MySqlParameter[] param)
+        {
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddRange(param);
+            try
+            {
+                int n = cmd.ExecuteNonQuery();
+                if (n > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
         /// 返回数据集
         /// </summary>
         /// <param name="sql">SQL语句</param>
@@ -83,6 +115,33 @@ namespace Experiment_04_TreeViewAndMySQL
             try
             {
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                return (ds.Tables[0]);
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
+        /// 返回数据集
+        /// </summary>
+        /// <param name="sql">SQL语句</param>
+        /// <param name="param">参数列表</param>
+        /// <returns></returns>
+        public DataTable ResultSet(string sql, MySqlParameter[] param)
+        {
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddRange(param);
+            try
+            {
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
                 return (ds.Tables[0]);
